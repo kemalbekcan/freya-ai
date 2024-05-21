@@ -3,6 +3,7 @@ export interface FavouriteState {
 }
 
 export interface FavouriteBody {
+  sort(arg0: (a: any, b: any) => number): any;
   id: number;
   price: number
   title: string;

@@ -1,9 +1,13 @@
+'use client';
+
 import { Sidebar, Navigation, Products } from "@/components";
+import { useAppSelector } from "@/hooks/hooks";
 // import { getData } from "@/api";
-// import { desc } from "@/utils";
-// import { IProduct } from "@/types/product";
+import { desc } from "@/utils";
+import { FavouriteBody } from "@/types/favourite";
 
 const Index = () => {
+  const favourites = useAppSelector((item) => item.favourite.favourites);
   return (
     <main className="flex items-center justify-between h-screen border">
       <Sidebar />
@@ -11,11 +15,14 @@ const Index = () => {
         <Navigation />
 
         <div className="flex flex-wrap gap-5">
-          test
+          {favourites &&
+            favourites.map((item: FavouriteBody) => {
+              return <Products key={item.id} {...item} />;
+            })}
         </div>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

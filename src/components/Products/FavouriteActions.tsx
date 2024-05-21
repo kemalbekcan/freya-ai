@@ -6,7 +6,6 @@ import heartIcon from "@/assets/images/heart.png";
 import solidHeartIcon from "@/assets/images/solid-heart.png";
 import { useAppSelector, useAppDispatch } from "@/hooks/hooks";
 import { updateFavourite, deleteFavourite } from "@/lib/features/favourite/favouriteSlice";
-import { FavouriteState, FavouriteBody } from "@/types/favourite";
 
 const FavouriteActions = (props: any) => {
   const dispatch = useAppDispatch();

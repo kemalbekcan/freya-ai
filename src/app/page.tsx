@@ -6,6 +6,8 @@ import { IProduct } from "@/types/product";
 export default async function Home() {
   const data = await getData();
 
+  console.log('data', data)
+
   return (
     <main className="flex items-center justify-between h-screen border">
       <Sidebar />
