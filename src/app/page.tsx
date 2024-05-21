@@ -1,7 +1,7 @@
 "use client";
 
 import useSWR from "swr";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Sidebar, Navigation, Products } from "@/components";
 import { getData } from "@/api";
 import { desc } from "@/utils";
