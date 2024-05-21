@@ -1,7 +1,7 @@
 "use client";
 
 import useSWR from "swr";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Sidebar, Navigation, Products } from "@/components";
 import { getData } from "@/api";
 import { desc } from "@/utils";
@@ -19,20 +19,20 @@ const Home = () => {
     fetcher
   );
 
-  dispatch(getProducts(data));
-
-  // if (error) return <div>failed to load</div>
-  // if (isLoading) return <div>loading...</div>
-
   const products = useAppSelector((item) => item.product.products);
 
-  console.log("products", products);
+  useEffect(() => {
+    dispatch(getProducts(products));
+  }, [dispatch, products]);
+
+  if (error) return <div>failed to load</div>;
+  if (isLoading) return <div>loading...</div>;
 
   return (
     <main className="flex items-center justify-between h-screen border">
       <Sidebar />
       <div className="flex-1 h-full bg-white p-5">
-        <Navigation products={products} />
+        <Navigation filterName={"products"} />
 
         <div className="flex flex-wrap gap-5">
           {products &&

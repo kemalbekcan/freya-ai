@@ -24,8 +24,15 @@ export const productSlice = createSlice({
   reducers: {
     getProducts: (state, action: PayloadAction<any>) => {
       state.products = action.payload;
+      localStorage.setItem("products", JSON.stringify(state.products));
     },
-    sortProducts: (state, action: PayloadAction<any>) => {},
+    sortProducts: (state, action: PayloadAction<any>) => {
+      if (action.payload === "asc") {
+        state.products?.sort((a, b) => a.price - b.price);
+      } else {
+        state.products?.sort((a, b) => b.price - a.price);
+      }
+    },
   },
 });
 

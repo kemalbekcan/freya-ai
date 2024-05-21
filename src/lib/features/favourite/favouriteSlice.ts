@@ -35,8 +35,6 @@ export const favouriteSlice = createSlice({
       } else {
         state.favourites?.sort((a, b) => b.price - a.price);
       }
-
-      localStorage.setItem("favourites", JSON.stringify(state.favourites));
     },
   },
 });
