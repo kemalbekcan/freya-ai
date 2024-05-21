@@ -29,8 +29,18 @@ export const favouriteSlice = createSlice({
       state.favourites = newFavourites;
       localStorage.setItem("favourites", JSON.stringify(state.favourites));
     },
+    sortFavourite: (state, action: PayloadAction<any>) => {
+      if (action.payload === "asc") {
+        state.favourites?.sort((a, b) => a.price - b.price);
+      } else {
+        state.favourites?.sort((a, b) => b.price - a.price);
+      }
+
+      localStorage.setItem("favourites", JSON.stringify(state.favourites));
+    },
   },
 });
 
-export const { updateFavourite, deleteFavourite } = favouriteSlice.actions;
+export const { updateFavourite, deleteFavourite, sortFavourite } =
+  favouriteSlice.actions;
 export default favouriteSlice.reducer;

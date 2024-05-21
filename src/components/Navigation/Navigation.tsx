@@ -4,14 +4,14 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { navigationMenu } from "@/utils/constants";
 import { useAppDispatch } from '@/hooks/hooks'
-import { sortProducts } from '@/lib/features/product/productSlice'
+import { sortFavourite } from '@/lib/features/favourite/favouriteSlice'
 
 const Navigation = ({products}: any) => {
   const dispatch = useAppDispatch()
   const pathname = usePathname();
 
-  const handleChange = (e: any) => {
-    dispatch(sortProducts(e.target.value))
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(sortFavourite(e.target.value))
   };
 
   return (
