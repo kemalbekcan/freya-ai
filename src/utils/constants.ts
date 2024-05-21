@@ -7,6 +7,9 @@ export const navigationMenu = [
   {
     id: 2,
     title: "Favoriler",
-    href: "/favouries",
+    href: "/favourites",
   },
 ];
+
+export const defaultBotMessage =
+  "Merhaba 👋 Bugün sana nasıl yardımcı olabilirim?";

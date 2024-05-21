@@ -1,14 +1,17 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { headers } from "next/headers";
 import { navigationMenu } from "@/utils/constants";
 
 const Navigation = () => {
-  const pathname = headers().get("x-pathname") || "/";
+  const pathname = usePathname();
+
   return (
     <ul className="flex justify-center gap-5 mb-6">
       {navigationMenu &&
         navigationMenu.map((item) => {
-          const isActive = pathname == item.href;
+          const isActive = pathname === item.href;
           return (
             <li
               key={item.id}

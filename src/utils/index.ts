@@ -31,3 +31,7 @@ export const asc = (data: IProduct) => {
       new Date(a.creationAt).getTime() - new Date(b.creationAt).getTime()
   );
 };
+
+export const getTime = () => {
+  const hours = new Date().getHours();
+}

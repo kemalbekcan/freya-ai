@@ -17,3 +17,17 @@
 .my-own {
   @apply ml-auto;
 }
+
+.card {
+  @apply relative;
+
+  .icon {
+    @apply hidden;
+  }
+
+  &:hover {
+    .icon {
+      @apply block absolute top-3 right-2 cursor-pointer;
+    }
+  }
+}

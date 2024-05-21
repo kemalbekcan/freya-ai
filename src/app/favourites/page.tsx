@@ -1,11 +1,9 @@
 import { Sidebar, Navigation, Products } from "@/components";
-import { getData } from "@/api";
-import { desc } from "@/utils";
-import { IProduct } from "@/types/product";
+// import { getData } from "@/api";
+// import { desc } from "@/utils";
+// import { IProduct } from "@/types/product";
 
-export default async function Home() {
-  const data = await getData();
-
+const Index = () => {
   return (
     <main className="flex items-center justify-between h-screen border">
       <Sidebar />
@@ -13,12 +11,11 @@ export default async function Home() {
         <Navigation />
 
         <div className="flex flex-wrap gap-5">
-          {data &&
-            desc(data).map((item: IProduct) => {
-              return <Products key={item.id} {...item} />;
-            })}
+          test
         </div>
       </div>
     </main>
-  );
+  )
 }
+
+export default Index
