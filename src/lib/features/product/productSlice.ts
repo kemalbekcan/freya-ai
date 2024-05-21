@@ -1,28 +1,33 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { IProduct } from "@/types/product";
 
-interface BookState {
-  floor: number | null;
-  unit: string;
+interface ProductState {
+  products: IProduct[] | null;
 }
 
-const initialState: BookState = {
-  floor: null,
-  unit: 'test',
+const loadChatsFromLocalStorage = (): IProduct[] => {
+  if (typeof window !== "undefined") {
+    const storedChats = localStorage.getItem("products");
+    return storedChats ? JSON.parse(storedChats) : [];
+  }
+  return [];
+};
+
+const initialState: ProductState = {
+  products: loadChatsFromLocalStorage(),
 };
 
 export const productSlice = createSlice({
-  name: 'product',
+  name: "product",
   initialState,
   reducers: {
-    updateFloor: (state, action: PayloadAction<number>) => {
-      state.floor = action.payload;
+    getProducts: (state, action: PayloadAction<any>) => {
+      state.products = action.payload;
     },
-    updateUnit: (state, action: PayloadAction<string>) => {
-      state.unit = action.payload;
-    },
+    sortProducts: (state, action: PayloadAction<any>) => {},
   },
 });
 
-export const { updateFloor, updateUnit } = productSlice.actions;
+export const { getProducts, sortProducts } = productSlice.actions;
 export default productSlice.reducer;
