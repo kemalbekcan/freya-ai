@@ -1,15 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { defaultBotMessage } from "@/utils/constants";
-
-interface ChatState {
-  chats: ChatBody[] | null;
-}
-
-interface ChatBody {
-  text: string;
-  bot: boolean;
-}
+import { ChatState, ChatBody } from "@/types/chat";
 
 const loadChatsFromLocalStorage = (): ChatBody[] => {
   if (typeof window !== "undefined") {

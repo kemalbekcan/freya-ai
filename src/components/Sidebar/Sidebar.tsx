@@ -12,11 +12,14 @@ const Sidebar = () => {
   const dispatch = useAppDispatch();
   const chats = useAppSelector((state) => state.chat.chats);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    
+    const target = e.currentTarget as typeof e.currentTarget & {
+      chatText: { value: string };
+    };
     const payload = {
-      text: e.target.chatText.value,
+      text: target.chatText.value,
       bot: false,
     };
 

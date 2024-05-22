@@ -1,20 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { navigationMenu } from "@/utils/constants";
 import { Select } from "@/components";
+import { INavigation } from "@/types/navigation";
 import { useAppDispatch } from "@/hooks/hooks";
 import { sortProducts } from "@/lib/features/product/productSlice";
 import { sortFavourite } from "@/lib/features/favourite/favouriteSlice";
 
-const Navigation = ({ filterName }: any) => {
+const Navigation: FC<INavigation> = ({ filterName }) => {
   const dispatch = useAppDispatch();
   const pathname = usePathname();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setVal(e.target.value)
+    setVal(e.target.value);
     if (filterName === "products") {
       dispatch(sortProducts(e.target.value));
     } else {

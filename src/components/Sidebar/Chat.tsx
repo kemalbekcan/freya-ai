@@ -1,6 +1,7 @@
-import React, { Fragment } from "react";
+import React, { Fragment, FC } from "react";
+import { IChat } from "@/types/chat";
 
-const Chat = (props: any) => {
+const Chat: FC<IChat> = (props) => {
   return (
     <Fragment>
       <div
