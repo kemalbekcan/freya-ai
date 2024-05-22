@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent } from "react";
+import { ChangeEvent, MouseEventHandler, ButtonHTMLAttributes } from "react";
 
 export interface ISelect {
   val: string;
@@ -8,9 +8,9 @@ export interface ISelect {
   id: string;
 }
 
-export interface IButton {
+export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: string;
-    type: string;
-    onClick?: (event: MouseEvent<HTMLSelectElement>) => void;
+    type: "submit" | "reset" | "button" | undefined;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
     children: React.ReactNode;
 }

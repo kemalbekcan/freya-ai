@@ -5,16 +5,16 @@ import sendImage from "@/assets/images/send.png";
 import { useAppSelector, useAppDispatch } from "@/hooks/hooks";
 import { updateChats } from "@/lib/features/chat/chatSlice";
 import React, { useCallback, useState, useEffect } from "react";
-import { Chat } from "@/components";
+import { Chat, BasicButton } from "@/components";
 
-const Sidebar = () => {
+const Sidebar = ({ isMobile, setIsMobile }: any) => {
   const [domLoaded, setDomLoaded] = useState(false);
   const dispatch = useAppDispatch();
   const chats = useAppSelector((state) => state.chat.chats);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     const target = e.currentTarget as typeof e.currentTarget & {
       chatText: { value: string };
     };
@@ -46,10 +46,21 @@ const Sidebar = () => {
   return (
     <>
       {domLoaded && (
-        <div className="w-[470px] h-full p-5 bg-[#F7F7F7]">
-          <h2 className="text-xl font-semibold leading-5 pb-[10px] border-b border-[#D6D6D6]">
-            AI Chatbot
-          </h2>
+        <div
+          className={`${
+            isMobile ? "md:block absolute left-0 top-0 w-full z-50" : "md:block hidden"
+          } w-[470px] h-full p-2 md:p-5 bg-[#F7F7F7] `}
+        >
+          <div className="flex justify-between border-b border-[#D6D6D6]">
+            <h2 className="text-xl font-semibold leading-5 pb-[10px]">
+              AI Chatbot
+            </h2>
+            <div className="md:hidden block">
+              <BasicButton type="button" onClick={() => setIsMobile(false)}>
+                x
+              </BasicButton>
+            </div>
+          </div>
 
           <div className="flex flex-col h-[95%] justify-between">
             <div>

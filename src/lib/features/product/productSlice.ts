@@ -24,6 +24,20 @@ export const productSlice = createSlice({
   reducers: {
     getProducts: (state, action: PayloadAction<any>) => {
       state.products = action.payload;
+      if(action.payload) {
+        localStorage.setItem("products", JSON.stringify(state.products));
+      }
+    },
+    deleteProduct: (state, action: PayloadAction<any>) => {
+      console.log('action', action.payload)
+      const idToDelete = action.payload.id;
+      const newFavourites = (state.products =
+        state.products?.filter((item) => item.id !== idToDelete) || []);
+      state.products = newFavourites;
+      localStorage.setItem("products", JSON.stringify(state.products));
+    },
+    addProduct: (state, action: PayloadAction<any>) => {
+      state.products?.push(action.payload);
       localStorage.setItem("products", JSON.stringify(state.products));
     },
     sortProducts: (state, action: PayloadAction<any>) => {
@@ -36,5 +50,5 @@ export const productSlice = createSlice({
   },
 });
 
-export const { getProducts, sortProducts } = productSlice.actions;
+export const { getProducts, addProduct, deleteProduct, sortProducts } = productSlice.actions;
 export default productSlice.reducer;

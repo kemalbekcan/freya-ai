@@ -19,7 +19,7 @@ export const favouriteSlice = createSlice({
   initialState,
   reducers: {
     updateFavourite: (state, action: PayloadAction<FavouriteBody>) => {
-      state.favourites?.push(action.payload);
+      state.favourites?.unshift(action.payload);
       localStorage.setItem("favourites", JSON.stringify(state.favourites));
     },
     deleteFavourite: (state, action: PayloadAction<number>) => {

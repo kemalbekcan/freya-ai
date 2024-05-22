@@ -5,6 +5,7 @@ import { BasicButton } from "@/components";
 import heartIcon from "@/assets/images/heart.png";
 import solidHeartIcon from "@/assets/images/solid-heart.png";
 import { useAppSelector, useAppDispatch } from "@/hooks/hooks";
+import { deleteProduct, addProduct } from "@/lib/features/product/productSlice";
 import {
   updateFavourite,
   deleteFavourite,
@@ -15,6 +16,14 @@ const FavouriteActions = (props: any) => {
 
   const addFavourite = (item: any) => {
     dispatch(updateFavourite(item));
+    dispatch(deleteProduct(item));
+  };
+
+  const handleDelete = (item: any) => {
+    if (item) {
+      dispatch(deleteFavourite(item.id));
+      dispatch(addProduct(item));
+    }
   };
 
   const { id } = props;
@@ -30,10 +39,7 @@ const FavouriteActions = (props: any) => {
   return (
     <div className="icon">
       {isFavourite ? (
-        <BasicButton
-          type="button"
-          onClick={() => dispatch(deleteFavourite(props.id))}
-        >
+        <BasicButton type="button" onClick={() => handleDelete(props)}>
           <Image src={solidHeartIcon} width={20} height={20} alt={"hearted"} />
         </BasicButton>
       ) : (

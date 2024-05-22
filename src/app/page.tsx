@@ -1,7 +1,7 @@
 "use client";
 
 import useSWR from "swr";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Sidebar, Navigation, Products, Loading, Error } from "@/components";
 import { getData } from "@/api";
 import { desc } from "@/utils";
@@ -13,28 +13,29 @@ const fetcher = (...args: Parameters<typeof fetch>) =>
   fetch(...args).then((res) => res.json());
 
 const Home = () => {
+  const [isMobile, setIsMobile] = useState(false)
   const dispatch = useAppDispatch();
-  const { error, isLoading } = useSWR(
+  const { data, error, isLoading } = useSWR(
     "https://api.escuelajs.co/api/v1/products",
     fetcher
   );
 
   const products = useAppSelector((item) => item.product.products);
 
-  useEffect(() => {
-    if (products?.length == 0) {
-      dispatch(getProducts(products));
-    }
-  }, [dispatch, products]);
+  if (!products || products.length === 0) {
+    dispatch(getProducts(data));
+  }
 
   if (error) return <Error />;
   if (isLoading) return <Loading />;
 
+  
+
   return (
     <main className="flex items-center justify-between h-screen border">
-      <Sidebar />
-      <div className="flex-1 h-full bg-white p-5">
-        <Navigation filterName={"products"} />
+      <Sidebar isMobile={isMobile} setIsMobile={setIsMobile} />
+      <div className="flex-1 h-full bg-white p-2 md:p-5">
+        <Navigation filterName={"products"} setIsMobile={setIsMobile} />
 
         <div className="flex flex-wrap gap-5">
           {products &&
