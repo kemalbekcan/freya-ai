@@ -6,8 +6,8 @@ import { FavouriteActions } from "@/components";
 
 const Products: FC<IProduct> = (props) => {
   return (
-    <div className="flex flex-1">
-      <div className="w-[170px]">
+    <div className="flex mx-auto">
+      <div className="w-[100px] sm:w-[140px] lg:w-[170px]">
         <div className="pt-6 pb-[23px] pr-3 pl-[13px] h-[216px] border-[0.5px] border-[#D6D6D6] rounded-[5px] flex justify-center items-center card">
           <FavouriteActions {...props} />
           <div>

@@ -43,7 +43,7 @@ const Navigation: FC<INavigation> = ({ filterName, setIsMobile }) => {
                 >
                   <Link
                     href={item.href}
-                    className="text-lg leading-5 font-medium text-[#E14621]"
+                    className="text-xs md:text-lg leading-5 font-medium text-[#E14621]"
                   >
                     {item.title}
                   </Link>
@@ -57,7 +57,7 @@ const Navigation: FC<INavigation> = ({ filterName, setIsMobile }) => {
           <Select
             val={val}
             onChange={(e) => handleChange(e)}
-            className=" w-[111px] h-10 rounded-[10px] border-[0.5px] p-[10px] text-xs leading-[18px] font-normal"
+            className="sm:w-[111px] w-[70px] h-10 rounded-[10px] border-[0.5px] p-[10px] text-xs leading-[18px] font-normal"
             name="priceValue"
             id="price-value"
           />
@@ -84,7 +84,7 @@ const Navigation: FC<INavigation> = ({ filterName, setIsMobile }) => {
                   >
                     <Link
                       href={item.href}
-                      className="text-lg leading-5 font-medium text-[#E14621]"
+                      className="text-xs md:text-lg font-medium text-[#E14621]"
                     >
                       {item.title}
                     </Link>
@@ -99,7 +99,7 @@ const Navigation: FC<INavigation> = ({ filterName, setIsMobile }) => {
           <Select
             val={val}
             onChange={(e) => handleChange(e)}
-            className=" w-[111px] h-10 rounded-[10px] border-[0.5px] p-[10px] text-xs leading-[18px] font-normal"
+            className="sm:w-[111px] w-[70px] h-10 rounded-[10px] border-[0.5px] p-[10px] text-xs leading-[18px] font-normal"
             name="priceValue"
             id="price-value"
           />
