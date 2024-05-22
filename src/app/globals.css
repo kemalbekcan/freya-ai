@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  @apply box-border;
+}
+
 .custom-shadow {
   /* @apply 0 0 4px rgba(0, 0, 0, 0.1); */
   /* @apply border; */
@@ -51,4 +55,8 @@ body {
     width: 100%;
     margin-left: auto;
   }
+}
+
+.card {
+  flex: 1 0 170px;
 }

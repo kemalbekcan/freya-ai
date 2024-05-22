@@ -25,6 +25,8 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
 
     dispatch(updateChats(payload));
 
+    target.chatText.value = '';
+
     setTimeout(() => {
       chatBotAdd();
     }, 5000);
@@ -48,8 +50,10 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
       {domLoaded && (
         <div
           className={`${
-            isMobile ? "md:block absolute left-0 top-0 w-full " : "md:block hidden"
-          } w-[470px] h-full p-2 md:p-5 bg-[#F7F7F7] fixed z-50 h-screen`}
+            isMobile
+              ? "md:block absolute left-0 top-0 w-full "
+              : "md:block hidden"
+          } w-[470px] h-full p-2 md:p-5 bg-[#F7F7F7] fixed z-50`}
         >
           <div className="flex justify-between border-b border-[#D6D6D6]">
             <h2 className="text-xl font-semibold leading-5 pb-[10px]">
@@ -62,7 +66,7 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
             </div>
           </div>
 
-          <div className="flex flex-col h-[95%] justify-between">
+          <div className="flex flex-col h-[95%] justify-between overflow-y-scroll">
             <div>
               {chats?.map((item, index) => (
                 <Chat item={item} key={index} />
