@@ -14,7 +14,7 @@ const fetcher = (...args: Parameters<typeof fetch>) =>
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const { data, error, isLoading } = useSWR(
+  const { error, isLoading } = useSWR(
     "https://api.escuelajs.co/api/v1/products",
     fetcher
   );
@@ -22,7 +22,9 @@ const Home = () => {
   const products = useAppSelector((item) => item.product.products);
 
   useEffect(() => {
-    dispatch(getProducts(products));
+    if (products?.length == 0) {
+      dispatch(getProducts(products));
+    }
   }, [dispatch, products]);
 
   if (error) return <Error />;
