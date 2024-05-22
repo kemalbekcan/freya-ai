@@ -35,3 +35,20 @@
 body {
   @apply overflow-x-hidden;   
 }
+
+
+
+
+@media screen and (min-width: 768px) {
+  .products {
+    width: calc(100% - 470px);
+    margin-left: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .products {
+    width: 100%;
+    margin-left: auto;
+  }
+}

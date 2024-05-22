@@ -25,7 +25,7 @@ const Index = () => {
       <div className="flex-1 h-full bg-white p-5">
         <Navigation setIsMobile={setIsMobile} />
 
-        <div className="flex flex-wrap gap-5">
+        <div className="flex flex-wrap gap-[15px] products">
           {favourites &&
             favourites.map((item: FavouriteBody) => (
               <Products key={item.id} {...item} />

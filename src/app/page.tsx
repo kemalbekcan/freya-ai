@@ -16,7 +16,7 @@ const Home = () => {
   const [isMobile, setIsMobile] = useState(false)
   const dispatch = useAppDispatch();
   const { data, error, isLoading } = useSWR(
-    "https://api.escuelajs.co/api/v1/products",
+    "https://api.escuelajs.co/api/v1/products?offset=0&limit=10",
     fetcher
   );
 
@@ -29,15 +29,13 @@ const Home = () => {
   if (error) return <Error />;
   if (isLoading) return <Loading />;
 
-  
-
   return (
-    <main className="flex items-center justify-between h-screen border">
+    <main className="flex justify-between h-full border">
       <Sidebar isMobile={isMobile} setIsMobile={setIsMobile} />
       <div className="flex-1 h-full bg-white p-2 md:p-5">
         <Navigation filterName={"products"} setIsMobile={setIsMobile} />
 
-        <div className="flex flex-wrap gap-5">
+        <div className="flex flex-wrap gap-[14.9px] flex-1 products">
           {products &&
             products.map((item: IProduct) => {
               return <Products key={item.id} {...item} />;

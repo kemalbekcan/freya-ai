@@ -48,8 +48,8 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
       {domLoaded && (
         <div
           className={`${
-            isMobile ? "md:block absolute left-0 top-0 w-full z-50" : "md:block hidden"
-          } w-[470px] h-full p-2 md:p-5 bg-[#F7F7F7] `}
+            isMobile ? "md:block absolute left-0 top-0 w-full " : "md:block hidden"
+          } w-[470px] h-full p-2 md:p-5 bg-[#F7F7F7] fixed z-50 h-screen`}
         >
           <div className="flex justify-between border-b border-[#D6D6D6]">
             <h2 className="text-xl font-semibold leading-5 pb-[10px]">

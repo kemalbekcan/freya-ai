@@ -29,8 +29,8 @@ const Navigation: FC<INavigation> = ({ filterName, setIsMobile }) => {
 
   return (
     <>
-      <div className="hidden w-full md:flex justify-between">
-        <ul className="flex flex-1 justify-center gap-5 mb-6">
+      <div className="hidden w-full md:flex justify-between products">
+        <ul className="flex flex-1 justify-center gap-[12px] mb-[18px]">
           {navigationMenu &&
             navigationMenu.map((item) => {
               const isActive = pathname === item.href;
@@ -43,7 +43,7 @@ const Navigation: FC<INavigation> = ({ filterName, setIsMobile }) => {
                 >
                   <Link
                     href={item.href}
-                    className="text-xs md:text-lg leading-5 font-medium text-[#E14621]"
+                    className={`text-xs md:text-lg leading-5 font-medium ${isActive ? 'text-[#E14621]' : 'text-black opacity-50'}`}
                   >
                     {item.title}
                   </Link>
@@ -53,7 +53,7 @@ const Navigation: FC<INavigation> = ({ filterName, setIsMobile }) => {
               );
             })}
         </ul>
-        <div className="mr-5">
+        <div className="mr-[3px]">
           <Select
             val={val}
             onChange={(e) => handleChange(e)}
@@ -95,7 +95,7 @@ const Navigation: FC<INavigation> = ({ filterName, setIsMobile }) => {
               })}
           </ul>
         </div>
-        <div className="mr-5">
+        <div className="mr-[3px]">
           <Select
             val={val}
             onChange={(e) => handleChange(e)}
