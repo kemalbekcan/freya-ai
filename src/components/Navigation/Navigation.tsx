@@ -1,25 +1,28 @@
 "use client";
 
+import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { navigationMenu } from "@/utils/constants";
-import { useAppDispatch } from '@/hooks/hooks'
-import { sortProducts } from '@/lib/features/product/productSlice'
-import { sortFavourite } from '@/lib/features/favourite/favouriteSlice'
+import { Select } from "@/components";
+import { useAppDispatch } from "@/hooks/hooks";
+import { sortProducts } from "@/lib/features/product/productSlice";
+import { sortFavourite } from "@/lib/features/favourite/favouriteSlice";
 
 const Navigation = ({ filterName }: any) => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const pathname = usePathname();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if(filterName === 'products') {
-      dispatch(sortProducts(e.target.value))
+    setVal(e.target.value)
+    if (filterName === "products") {
+      dispatch(sortProducts(e.target.value));
+    } else {
+      dispatch(sortFavourite(e.target.value));
     }
-    else {
-      dispatch(sortFavourite(e.target.value))
-    }
-    
   };
+
+  const [val, setVal] = useState("");
 
   return (
     <div className="w-full flex justify-between items-center">
@@ -45,18 +48,13 @@ const Navigation = ({ filterName }: any) => {
           })}
       </ul>
       <div>
-        <select
+        <Select
+          val={val}
+          onChange={(e) => handleChange(e)}
           className="w-[111px] h-10 rounded-[10px] border-[0.5px] p-[10px] text-xs leading-[18px] font-normal"
           name="priceValue"
           id="price-value"
-          onChange={handleChange}
-        >
-          <option selected className="hidden">
-            Filtrele
-          </option>
-          <option value="asc">Artan Fiyat</option>
-          <option value="desc">Azalan Fiyat</option>
-        </select>
+        />
       </div>
     </div>
   );

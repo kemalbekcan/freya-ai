@@ -1,6 +1,9 @@
-const BasicButton = ({ variant, onClick, children }: any) => {
+import React, { FC } from "react";
+import { IButton } from "@/types/ui";
+
+const BasicButton: FC<IButton> = ({ onClick, children, type }: any) => {
   return (
-    <button type="button" onClick={onClick}>
+    <button type={type} onClick={onClick}>
       {children}
     </button>
   );
