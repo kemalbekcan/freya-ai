@@ -20,7 +20,7 @@ const Index = () => {
   if (loading) return <Loading />;
 
   return (
-    <main className="flex items-center justify-between h-screen border">
+    <main className="flex items-center justify-between h-screen">
       <Sidebar isMobile={isMobile} setIsMobile={setIsMobile} />
       <div className="flex-1 h-full bg-white p-5">
         <Navigation setIsMobile={setIsMobile} />
