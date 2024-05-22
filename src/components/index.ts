@@ -7,5 +7,6 @@ import FavouriteActions from "./Products/FavouriteActions";
 import BasicButton from "./Ui/BasicButton";
 import Select from "./Ui/Select";
 import Loading from "./Loading/Loading";
+import Error from "./Error/Error";
 
-export { Sidebar, Chat, Navigation, Products, FavouriteActions, BasicButton, Select, Loading };
+export { Sidebar, Chat, Navigation, Products, FavouriteActions, BasicButton, Select, Loading, Error };

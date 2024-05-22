@@ -2,7 +2,7 @@
 
 import useSWR from "swr";
 import React, { useEffect } from "react";
-import { Sidebar, Navigation, Products, Loading } from "@/components";
+import { Sidebar, Navigation, Products, Loading, Error } from "@/components";
 import { getData } from "@/api";
 import { desc } from "@/utils";
 import { IProduct } from "@/types/product";
@@ -25,12 +25,7 @@ const Home = () => {
     dispatch(getProducts(products));
   }, [dispatch, products]);
 
-  if (error)
-    return (
-      <div className="w-full h-screen flex justify-center items-center">
-        <div className="">failed to load</div>
-      </div>
-    );
+  if (error) return <Error />;
   if (isLoading) return <Loading />;
 
   return (
