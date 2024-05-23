@@ -43,6 +43,8 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
     };
 
     dispatch(updateChats(payload));
+    const audio = new Audio("/sounds/message.mp3");
+    audio.play();
   }, [dispatch]);
 
   useEffect(() => {
@@ -70,11 +72,10 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
             </div>
           </div>
 
-          <div className="flex flex-col h-[95%] justify-between overflow-y-scroll">
+          <div className="flex flex-col h-[95%] justify-between overflow-y-auto">
             <div>
-            {chats && chats?.map((item, index) => (
-                <Chat item={item} key={index} />
-              ))}
+              {chats &&
+                chats?.map((item, index) => <Chat item={item} key={index} />)}
             </div>
 
             <form onSubmit={handleSubmit}>
