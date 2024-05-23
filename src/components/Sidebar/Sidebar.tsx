@@ -95,7 +95,11 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
                   <Image src={sendImage} width={18} height={18} alt="send" />
                 </button>
               </div>
-              <span className="block mt-2 text-right mr-[60px] text-[10px] leading-[12.1px] font-light">
+              <span
+                className={`block mt-2 text-right mr-[60px] text-[10px] leading-[12.1px] font-light ${
+                  val.length == 3000 ? "text-[#E14621]" : "text-black"
+                } `}
+              >
                 {val.length}/3000
               </span>
             </form>
