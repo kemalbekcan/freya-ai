@@ -25,8 +25,18 @@ const Home = () => {
     }
   }, [data, dispatch, products]);
 
-  if (error) return <Error />;
-  if (isLoading) return <Loading />;
+  if (error)
+    return (
+      <Suspense>
+        <Error />
+      </Suspense>
+    );
+  if (isLoading)
+    return (
+      <Suspense>
+        <Loading />
+      </Suspense>
+    );
 
   return (
     <main className="flex justify-between h-full">
@@ -43,8 +53,8 @@ const Home = () => {
           {products &&
             products?.map((item: IProduct) => {
               return (
-                <Suspense fallback={<p>Loading feed...</p>} key={item.id}>
-                  <Products {...item} />
+                <Suspense fallback={<p>Loading feed...</p>}>
+                  <Products key={item.id} {...item} />
                 </Suspense>
               );
             })}
