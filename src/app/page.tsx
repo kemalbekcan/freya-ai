@@ -3,8 +3,6 @@
 import useSWR from "swr";
 import React, { useEffect, useState } from "react";
 import { Sidebar, Navigation, Products, Loading, Error } from "@/components";
-import { getData } from "@/api";
-import { desc } from "@/utils";
 import { IProduct } from "@/types/product";
 import { useAppSelector, useAppDispatch } from "@/hooks/hooks";
 import { getProducts } from "@/lib/features/product/productSlice";
@@ -15,16 +13,17 @@ const fetcher = (...args: Parameters<typeof fetch>) =>
 const Home = () => {
   const [isMobile, setIsMobile] = useState(false);
   const dispatch = useAppDispatch();
+  const products = useAppSelector((item) => item.product.products);
   const { data, error, isLoading } = useSWR(
     "https://api.escuelajs.co/api/v1/products?offset=0&limit=10",
     fetcher
   );
 
-  const products = useAppSelector((item) => item.product.products);
-
-  if (!products || products.length === 0) {
-    dispatch(getProducts(data));
-  }
+  useEffect(() => {
+    if (data && (!products || products.length === 0)) {
+      dispatch(getProducts(data));
+    }
+  }, [data, dispatch, products]);
 
   if (error) return <Error />;
   if (isLoading) return <Loading />;

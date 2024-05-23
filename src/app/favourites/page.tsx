@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { Sidebar, Navigation, Products, Loading } from "@/components";
 import { useAppSelector } from "@/hooks/hooks";
-// import { getData } from "@/api";
-import { desc } from "@/utils";
 import { FavouriteBody } from "@/types/favourite";
 
 const Index = () => {

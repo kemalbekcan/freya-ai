@@ -18,20 +18,6 @@ export const getImage = (image: string) => {
   return image[0];
 };
 
-export const desc = (data: IProduct) => {
-  return data.sort(
-    (a: any, b: any) =>
-      new Date(b.creationAt).getTime() - new Date(a.creationAt).getTime()
-  );
-};
-
-export const asc = (data: IProduct) => {
-  return data.sort(
-    (a: any, b: any) =>
-      new Date(a.creationAt).getTime() - new Date(b.creationAt).getTime()
-  );
-};
-
 export const getTime = () => {
   const now = new Date();
   const hours = String(now.getHours()).padStart(2, "0");
