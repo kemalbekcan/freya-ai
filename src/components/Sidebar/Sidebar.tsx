@@ -6,9 +6,11 @@ import { useAppSelector, useAppDispatch } from "@/hooks/hooks";
 import { updateChats } from "@/lib/features/chat/chatSlice";
 import React, { useCallback, useState, useEffect } from "react";
 import { Chat, BasicButton } from "@/components";
+import { getTime } from "@/utils/index";
 
 const Sidebar = ({ isMobile, setIsMobile }: any) => {
   const [domLoaded, setDomLoaded] = useState(false);
+  const [val, setVal] = useState("");
   const dispatch = useAppDispatch();
   const chats = useAppSelector((state) => state.chat.chats);
 
@@ -21,11 +23,12 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
     const payload = {
       text: target.chatText.value,
       bot: false,
+      time: getTime(),
     };
 
     dispatch(updateChats(payload));
 
-    target.chatText.value = '';
+    target.chatText.value = "";
 
     setTimeout(() => {
       chatBotAdd();
@@ -36,6 +39,7 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
     const payload = {
       text: "Merhaba 👋 Bugün sana nasıl yardımcı olabilirim?",
       bot: true,
+      time: getTime(),
     };
 
     dispatch(updateChats(payload));
@@ -76,6 +80,8 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
             <form onSubmit={handleSubmit}>
               <div className="flex gap-[9px]">
                 <input
+                  onChange={(e) => setVal(e.target.value)}
+                  maxLength={3000}
                   type="text"
                   placeholder="Yaz..."
                   className="text-sm leading-[21px] font-normal px-[10px] h-10 rounded-[10px] flex-1 border border-[#D6D6D6]"
@@ -88,6 +94,9 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
                   <Image src={sendImage} width={18} height={18} alt="send" />
                 </button>
               </div>
+              <span className="block mt-2 text-right mr-[60px] text-[10px] leading-[12.1px] font-light">
+                {val.length}/3000
+              </span>
             </form>
           </div>
         </div>

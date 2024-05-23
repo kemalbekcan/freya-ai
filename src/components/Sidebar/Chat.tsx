@@ -14,7 +14,7 @@ const Chat: FC<IChat> = (props) => {
             {props.item.text}
           </p>
           <span className="text-xs leading-5 font-light text-[#797979] block text-right">
-            18.03
+            {props.item.time}
           </span>
         </div>
       </div>

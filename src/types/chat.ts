@@ -5,8 +5,9 @@ export interface ChatState {
 export interface ChatBody {
   text: string;
   bot: boolean;
+  time: string;
 }
 
 export interface IChat {
-  item: { bot: boolean; text: string };
+  item: { bot: boolean; text: string; time: string };
 }
