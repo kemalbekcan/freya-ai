@@ -25,18 +25,13 @@ const Home = () => {
     }
   }, [data, dispatch, products]);
 
-  if (error)
+  if (error || isLoading) {
     return (
-      <Suspense>
+      <Suspense fallback={<p>Loading feed...</p>}>
         <Error />
       </Suspense>
     );
-  if (isLoading)
-    return (
-      <Suspense>
-        <Loading />
-      </Suspense>
-    );
+  }
 
   return (
     <main className="flex justify-between h-full">
