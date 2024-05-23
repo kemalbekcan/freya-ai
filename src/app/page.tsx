@@ -1,22 +1,19 @@
 "use client";
 
-import useSWR from "swr";
+// import useSWR from "swr";
 import React, { useEffect, useState, Suspense } from "react";
 import { Sidebar, Navigation, Products, Loading, Error } from "@/components";
 import { IProduct } from "@/types/product";
 import { useAppSelector, useAppDispatch } from "@/hooks/hooks";
 import { getProducts } from "@/lib/features/product/productSlice";
-
-const fetcher = (...args: Parameters<typeof fetch>) =>
-  fetch(...args).then((res) => res.json());
+import { useCustomSWR } from "@/lib/swr";
 
 const Home = () => {
   const [isMobile, setIsMobile] = useState(false);
   const dispatch = useAppDispatch();
   const products = useAppSelector((item) => item.product.products);
-  const { data, error, isLoading } = useSWR(
-    "https://api.escuelajs.co/api/v1/products?offset=0&limit=10",
-    fetcher
+  const { data, error, isLoading } = useCustomSWR(
+    "https://api.escuelajs.co/api/v1/products?offset=0&limit=10"
   );
 
   useEffect(() => {
@@ -28,7 +25,7 @@ const Home = () => {
   if (error || isLoading) {
     return (
       <Suspense fallback={<p>Loading feed...</p>}>
-        <Error />
+        <Loading />
       </Suspense>
     );
   }
@@ -48,8 +45,8 @@ const Home = () => {
           {products &&
             products?.map((item: IProduct) => {
               return (
-                <Suspense fallback={<p>Loading feed...</p>}>
-                  <Products key={item.id} {...item} />
+                <Suspense key={item.id} fallback={<p>Loading feed...</p>}>
+                  <Products {...item} />
                 </Suspense>
               );
             })}
