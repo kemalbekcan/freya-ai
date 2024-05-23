@@ -1,7 +1,7 @@
 "use client";
 
 import useSWR from "swr";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { Sidebar, Navigation, Products, Loading, Error } from "@/components";
 import { IProduct } from "@/types/product";
 import { useAppSelector, useAppDispatch } from "@/hooks/hooks";
@@ -30,14 +30,23 @@ const Home = () => {
 
   return (
     <main className="flex justify-between h-full">
-      <Sidebar isMobile={isMobile} setIsMobile={setIsMobile} />
+      <Suspense fallback={<p>Loading feed...</p>}>
+        <Sidebar isMobile={isMobile} setIsMobile={setIsMobile} />
+      </Suspense>
+
       <div className="flex-1 h-full bg-white p-2 md:p-5">
-        <Navigation filterName={"products"} setIsMobile={setIsMobile} />
+        <Suspense fallback={<p>Loading feed...</p>}>
+          <Navigation filterName={"products"} setIsMobile={setIsMobile} />
+        </Suspense>
 
         <div className="flex flex-wrap gap-5 products">
           {products &&
-            products.map((item: IProduct) => {
-              return <Products key={item.id} {...item} />;
+            products?.map((item: IProduct) => {
+              return (
+                <Suspense fallback={<p>Loading feed...</p>} key={item.id}>
+                  <Products {...item} />
+                </Suspense>
+              );
             })}
         </div>
       </div>

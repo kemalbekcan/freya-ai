@@ -72,7 +72,7 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
 
           <div className="flex flex-col h-[95%] justify-between overflow-y-scroll">
             <div>
-              {chats?.map((item, index) => (
+            {chats && chats?.map((item, index) => (
                 <Chat item={item} key={index} />
               ))}
             </div>
