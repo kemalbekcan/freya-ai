@@ -7,6 +7,7 @@ import { updateChats } from "@/lib/features/chat/chatSlice";
 import React, { useCallback, useState, useEffect } from "react";
 import { Chat, BasicButton } from "@/components";
 import { getTime } from "@/utils/index";
+import closeIcon from "@/assets/images/close.png";
 import { Poppins } from "next/font/google";
 
 const poppins = Poppins({
@@ -17,7 +18,7 @@ const poppins = Poppins({
 const lightPoppins = Poppins({
   subsets: ["latin"],
   weight: "400",
-})
+});
 
 const Sidebar = ({ isMobile, setIsMobile }: any) => {
   const [domLoaded, setDomLoaded] = useState(false);
@@ -80,7 +81,7 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
             </h2>
             <div className="md:hidden block">
               <BasicButton type="button" onClick={() => setIsMobile(false)}>
-                x
+                <Image src={closeIcon} width={20} height={20} alt={"close"} />
               </BasicButton>
             </div>
           </div>
