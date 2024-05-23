@@ -61,7 +61,17 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
 
   useEffect(() => {
     setDomLoaded(true);
-  }, []);
+
+    const handleResize = () => {
+      if (window.innerWidth > 767) {
+        setIsMobile(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [setIsMobile]);
 
   return (
     <>
