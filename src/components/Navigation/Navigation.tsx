@@ -11,6 +11,12 @@ import { INavigation } from "@/types/navigation";
 import { useAppDispatch } from "@/hooks/hooks";
 import { sortProducts } from "@/lib/features/product/productSlice";
 import { sortFavourite } from "@/lib/features/favourite/favouriteSlice";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: "500"
+});
 
 const Navigation: FC<INavigation> = ({ filterName, setIsMobile }) => {
   const dispatch = useAppDispatch();
@@ -43,7 +49,7 @@ const Navigation: FC<INavigation> = ({ filterName, setIsMobile }) => {
                 >
                   <Link
                     href={item.href}
-                    className={`text-xs md:text-lg leading-5 font-medium ${isActive ? 'text-[#E14621]' : 'text-black opacity-50'}`}
+                    className={`text-xs md:text-lg leading-5 font-medium ${poppins.className} ${isActive ? 'text-[#E14621]' : 'text-black opacity-50'}`}
                   >
                     {item.title}
                   </Link>

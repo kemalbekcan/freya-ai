@@ -7,6 +7,17 @@ import { updateChats } from "@/lib/features/chat/chatSlice";
 import React, { useCallback, useState, useEffect } from "react";
 import { Chat, BasicButton } from "@/components";
 import { getTime } from "@/utils/index";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: "600",
+});
+
+const lightPoppins = Poppins({
+  subsets: ["latin"],
+  weight: "400",
+})
 
 const Sidebar = ({ isMobile, setIsMobile }: any) => {
   const [domLoaded, setDomLoaded] = useState(false);
@@ -62,7 +73,9 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
           } w-[470px] h-full p-2 md:p-5 bg-[#F7F7F7] fixed z-50`}
         >
           <div className="flex justify-between border-b border-[#D6D6D6]">
-            <h2 className="text-xl font-semibold leading-5 pb-[10px]">
+            <h2
+              className={`text-xl font-semibold leading-5 pb-[10px] ${poppins.className}`}
+            >
               AI Chatbot
             </h2>
             <div className="md:hidden block">
@@ -85,7 +98,7 @@ const Sidebar = ({ isMobile, setIsMobile }: any) => {
                   maxLength={3000}
                   type="text"
                   placeholder="Yaz..."
-                  className="text-sm leading-[21px] font-normal px-[10px] h-10 rounded-[10px] flex-1 border border-[#D6D6D6]"
+                  className={`text-sm leading-[21px] font-normal px-[10px] h-10 rounded-[10px] flex-1 border border-[#D6D6D6] ${lightPoppins.className}`}
                   name="chatText"
                 />
                 <button
